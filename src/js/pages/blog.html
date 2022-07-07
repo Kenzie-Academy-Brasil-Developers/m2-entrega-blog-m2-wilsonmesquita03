@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>m2-entrega-blog-m2</title>
+  <link rel="stylesheet" href="/src/styles/reset.css">
+  <link rel="stylesheet" href="/src/styles/componentes.css">
+  <link rel="stylesheet" href="/src/styles/css/blog.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+
+    <figure class="userInfo">
+      <img class="userInfo__avatar" src="/temp/image 4.png" alt="userAvatar">
+      <figcaption class="userInfo__name">Nome de Usuario</figcaption>
+    </figure>
+    <button class="button header__button button--theme-orange">Logout</button>
+
+  </header>
+  <main>
+    <section>
+      <div class="postTextArea">
+        <textarea class="textPost" placeholder="Comece seu post incrivel"></textarea>
+        <button class="button button__post button--theme-orange"><img src="./assets/img/+.svg" alt=""></button>
+      </div>
+      <ul id="posts">
+        <li>
+          <img class="post__image" src="./avatarDefault.png" alt="userAvatar">
+          <div class="post__details">
+            <h1>Nome do Usuario</h1>
+            <span>Lorem ipsum dolor sit amet. Et iste labore ut similique consequuntur et consequuntur harum est repellendus quia 33 tempore similique. Nam reprehenderit vero eos maxime consequatur At nihil facere vel quam nemo eum perspiciatis maiores qui atque quia.
+              Lorem ipsum dolor sit amet. Et iste labore ut similique consequuntur et consequuntur harum est repellendus quia 33 tempore similique. Nam reprehenderit vero eos maxime consequatur At nihil facere vel quam nemo eum perspiciatis maiores qui atque quia.
+            </span>
+          </div>
+          <div class="post__moreInfo">
+            <button class="button post__button post__button--theme-blue">Editar</button>
+            <button class="button post__button post__button--theme-red">Apagar</button>
+            <span class="moreInfo__data">Data</span>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+  <script type="module" src="/src/script.js" type="module"></script>
+</body>
+</html>
