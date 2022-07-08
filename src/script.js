@@ -1,10 +1,15 @@
 import UserRequests  from "./js/controllers/userRequests.js";
 import postRequests from "./js/controllers/postRequests.js"
 import Post from "./js/models/post.js";
+import ComponentesDOM from "./js/models/componentes.js";
 
+if(localStorage.getItem("@blog-kenzie:user") == null){
+    window.location = "/index.html"
+}
 
-const teste = await postRequests.getPosts()
+const posts = await postRequests.getPosts()
 
-console.log(teste.data)
+Post.listPosts(posts.data)
 
-Post.listPosts(teste.data)
+await ComponentesDOM.header()
+await ComponentesDOM.publishPost()

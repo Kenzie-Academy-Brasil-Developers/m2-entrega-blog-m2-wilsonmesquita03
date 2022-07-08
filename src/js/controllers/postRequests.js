@@ -23,4 +23,16 @@ export default class postRequests {
         .then(res => res.json())
         .catch(err => console.log(err))
     }
+    static async newPost(data){
+        return fetch(this.base_url + "/posts", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("@blog-kenzie:token")}`
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .catch(err => console.log(err))
+    }
 }

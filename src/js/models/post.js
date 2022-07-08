@@ -9,7 +9,7 @@ export default class Post {
         avatar.src = user.avatarUrl
 
         avatar.onerror = () => {
-          avatar.src = "./avatarDefault.png"
+          avatar.src = "../../../assets/img/avatarDefault.png"
         }
 
         const postDetails = document.createElement('div')
@@ -26,7 +26,7 @@ export default class Post {
         moreInfo.classList.add("post__moreInfo")
         
         const moreInfoData = document.createElement('span')
-        moreInfoData.innerText = createdAt
+        moreInfoData.innerText = dataFormater(createdAt)
         moreInfoData.classList.add("moreInfo__data")
 
         moreInfo.append(moreInfoData)
@@ -43,8 +43,14 @@ export default class Post {
         ul.innerHTML = ""
         lista.forEach(item => {
             const card = this.componenteDOM(item)
-            console.log(card)
             ul.appendChild(card)
         })
     }
+}
+
+function dataFormater(data){
+    const dataArr = data.split('-')
+    dataArr[2] = dataArr[2][0] + dataArr[2][1]
+
+    return dataArr.join('.')
 }

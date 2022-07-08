@@ -1,4 +1,6 @@
+import postRequests from "../controllers/postRequests.js"
 import UserRequests from "../controllers/userRequests.js"
+import Post from "./post.js"
 
 export default class ComponentesDOM {
     static main = document.querySelector('main')
@@ -50,7 +52,9 @@ export default class ComponentesDOM {
 
             const data = {email, password}
 
-            console.log(await UserRequests.login(data))
+            await UserRequests.login(data)
+
+            window.location.reload()
         })
 
         this.main.append(form)
@@ -95,7 +99,6 @@ export default class ComponentesDOM {
         buttonRegistred.classList.add('button', "register")
 
         buttonRegistred.addEventListener("click", (event) => {
-            event.preventDefault()
             this.login()
         })
 
@@ -103,18 +106,54 @@ export default class ComponentesDOM {
         form.append(div, inputUser, inputEmail, inputPhoto, inputPassword, inputSubmit, buttonRegistred)
 
         form.addEventListener('submit', async (event) => {
-            event.preventDefault()
 
-            const username = event.target[0]
-            const email = event.target[1]
-            const avatarUrl = event.target[2]
-            const password = event.target[3]
+            const username = event.target[0].value
+            const email = event.target[1].value
+            const avatarUrl = event.target[2].value
+            const password = event.target[3].value
 
             const data = {username, email, avatarUrl, password}
+
+            console.log(data)
 
             UserRequests.register(data)
         })
         
         this.main.append(form)
+    }
+    static async header() {
+        const user = await UserRequests.getUserByID(localStorage.getItem("@blog-kenzie:user"))
+
+        const userName = document.querySelector('.userInfo__name')
+        userName.innerText = user.username
+
+        const userAvatar = document.querySelector(".userInfo__avatar")
+        userAvatar.src = user.avatarUrl
+
+        userAvatar.onerror = () => {
+            userAvatar.src = "../../../assets/img/avatarDefault.png"
+          }
+        
+        const buttonLogout = document.querySelector('#buttonLogout')
+        buttonLogout.addEventListener("click", () => {
+            localStorage.clear()
+            window.location.reload()
+        })
+    }
+    static publishPost(){
+        const texto = document.querySelector('.textPost')
+
+        const publishButton = document.querySelector('#publish')
+
+        publishButton.addEventListener('click', async () => {
+            const data = {
+                content: texto.value
+            }
+            postRequests.newPost(data)
+            
+            const posts = await postRequests.getPosts()
+
+            Post.listPosts(posts.data)      
+        })
     }
 }
