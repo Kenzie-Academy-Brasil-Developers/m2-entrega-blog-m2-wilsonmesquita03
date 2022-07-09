@@ -149,11 +149,12 @@ export default class ComponentesDOM {
             const data = {
                 content: texto.value
             }
-            postRequests.newPost(data)
-            
+            await postRequests.newPost(data)
+            texto.value = ""
+
             const posts = await postRequests.getPosts()
 
-            Post.listPosts(posts.data)      
+            Post.listPosts(posts.data)    
         })
     }
 }

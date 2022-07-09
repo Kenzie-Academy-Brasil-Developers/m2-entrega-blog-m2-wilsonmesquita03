@@ -9,7 +9,29 @@ if(localStorage.getItem("@blog-kenzie:user") == null){
 
 const posts = await postRequests.getPosts()
 
-Post.listPosts(posts.data)
+// const posts = [{
+//     content: "Olá",
+//     createdAt: "2022-07-07T00:00:00.000Z",
+//     id: 479,
+//     updateAt: null,
+//     user: {
+//         id: 3651,
+//         username: "Wilson",
+//         avatarUrl: "#"
+//     }
+// }, {
+//     content: "Olá",
+//     createdAt: "2022-07-07T00:00:00.000Z",
+//     id: 480,
+//     updateAt: null,
+//     user: {
+//         id: 3650,
+//         username: "Kop",
+//         avatarUrl: "#"
+//     }
+// }]
+
+Post.listPosts(posts.data)  
 
 await ComponentesDOM.header()
 await ComponentesDOM.publishPost()

@@ -35,4 +35,23 @@ export default class postRequests {
         .then(res => res.json())
         .catch(err => console.log(err))
     }
+    static async deletePost(id){
+        return fetch(this.base_url + `/posts/${id}`,{
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("@blog-kenzie:token")}`
+            }
+        })
+    }
+    static async editPost(id, data){
+        return fetch(this.base_url + `/posts/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("@blog-kenzie:token")}`
+            },
+            body: JSON.stringify(data)
+        })
+    }
 }
