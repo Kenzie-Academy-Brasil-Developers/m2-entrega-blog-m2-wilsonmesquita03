@@ -106,6 +106,7 @@ export default class ComponentesDOM {
         form.append(div, inputUser, inputEmail, inputPhoto, inputPassword, inputSubmit, buttonRegistred)
 
         form.addEventListener('submit', async (event) => {
+            event.preventDefault()
 
             const username = event.target[0].value
             const email = event.target[1].value
@@ -114,9 +115,8 @@ export default class ComponentesDOM {
 
             const data = {username, email, avatarUrl, password}
 
-            console.log(data)
-
-            UserRequests.register(data)
+            await UserRequests.register(data)
+            this.login()
         })
         
         this.main.append(form)

@@ -10,7 +10,7 @@ export default class UserRequests {
             body: JSON.stringify(data)
         })
         .then(res => res.json())
-        .catch(err => console.log(err))
+        .then(err => console.log(err))
     }
     static async login(data){
         return await fetch(this.base_url + "/users/login",{
@@ -22,8 +22,10 @@ export default class UserRequests {
         })
         .then(res => res.json())
         .then(res => {
-            localStorage.setItem("@blog-kenzie:user", res.userId)
-            localStorage.setItem("@blog-kenzie:token", res.token)
+            if(res.userId !== undefined && res.token !== undefined){
+                localStorage.setItem("@blog-kenzie:user", res.userId)
+                localStorage.setItem("@blog-kenzie:token", res.token)
+            }
         })
         .catch(err => console.log(err))
     }
